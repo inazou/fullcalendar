@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>fullcalendar</title>
+        <link href='./css/fullcalendar.css' rel='stylesheet' />
+        <link href='./css/fullcalendar.print.css' rel='stylesheet' media='print' />
+        <script src='./js/moment.min.js'></script>
+        <script src='./js/jquery.min.js'></script>
+        <script src='./js/fullcalendar.min.js'></script>
+        <script>
+	$(document).ready(function() {
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			defaultDate: '2015-02-12', // 最初に表示される日にち
+			editable: false, // ドラッグで予定を操作できるようにする
+			eventLimit: true, // 予定が多くなった時にクリックですべて表示
+                        timeFormat: 'H:mm', // 時間のフォーマット
+                        slotLabelFormat: 'H:mm', // agendaの縦軸の時間のフォーマット
+                        displayEventEnd: true, // デフォルトでagendaWeekとagendaDayにしか表示されない終了時間をmonthなどに表示
+                        eventClick: function(calEvent, jsEvent, view){
+                            // ここにイベントをクリックした時の動作を記述できる
+                            alert('Event: ' + calEvent.title);
+                            alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                            alert('View: ' + view.name);
+                        },
+			events: [
+				{
+					title: 'All Day Event',
+					start: '2015-02-01'
+				},
+				{
+					title: 'Long Event',
+					start: '2015-02-07',
+					end: '2015-02-10'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2015-02-09 16:00:00',
+                                        end: '2015-02-09 17:00:00'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2015-02-16T16:00:00'
+				},
+				{
+					title: 'Conference',
+					start: '2015-02-11',
+					end: '2015-02-13'
+				},
+				{
+					title: '\nMeeting', // \nで改行ができる
+					start: '2015-02-12T10:30:00',
+					end: '2015-02-12T12:30:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2015-02-12T12:00:00'
+				},
+				{
+					title: 'Meetinggggggggggggggggg',
+					start: '2015-02-12T14:30:00'
+				},
+                                {
+					title: 'Meetinggggggggggggggggg',
+					start: '2015-02-12T14:30:00'
+				},
+				{
+					title: 'Happy Hour',
+					start: '2015-02-12T17:30:00'
+				},
+				{
+					title: 'Dinner',
+					start: '2015-02-12T20:00:00'
+				},
+				{
+					title: 'Birthday Party',
+					start: '2015-02-13T07:00:00'
+				},
+				{
+					title: 'Click for Google',
+					url: 'http://google.com/',
+					start: '2015-02-28'
+				}
+			]
+		});	
+	});
+        </script>
+    </head>
+    <body>
+        <div id='calendar'></div>
+    </body>
+</html>
